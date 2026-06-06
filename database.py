@@ -134,6 +134,16 @@ def add_audit_log(user, action):
     conn.close()
 
 # Run initialization when this script is run directly
+import shutil  # Python's built-in file copying library
+
+def backup_database():
+    """Creates a copy of the database file as a backup."""
+    try:
+        shutil.copy(DB_FILE, "voting_system_backup.db")
+        add_audit_log("SYSTEM", "Database backup created successfully")
+        return True, "Backup created successfully: voting_system_backup.db"
+    except Exception as e:
+        return False, f"Backup failed: {str(e)}"
 if __name__ == "__main__":
     initialize_db()
     print("Database initialized successfully!")

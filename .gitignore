@@ -1,0 +1,11 @@
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore the local database file (so we don't overwrite each other's data)
+voting_system.db
+voting_system.db-journal
+
+# Ignore virtual environment folders
+venv/
+.venv/

@@ -20,15 +20,17 @@ def seed_data():
         else:
             print(f"Candidate already exists: {name}")
 
-    print("\nRegistering a test voter...")
-    # Registering a test voter using our security logic (Voter ID: V100, Password: password123)
-    success, message = auth.register_user(
-        voter_id="V100",
-        name="John Doe",
-        email="john@example.com",
-        password="password123"
-    )
-    print(f"Voter Registration status: {message}")
+    print("\nRegistering test voters...")
+    # Registering multiple test voters with the same password for easy testing
+    voters = [
+        ("V100", "John Doe", "john@example.com", "password123"),
+        ("V101", "Alice Smith", "alice@example.com", "password123"),
+        ("V102", "Bob Jones", "bob@example.com", "password123"),
+        ("V103", "Emma Watson", "emma@example.com", "password123")
+    ]
+    for v_id, name, email, pw in voters:
+        success, message = auth.register_user(voter_id=v_id, name=name, email=email, password=pw)
+        print(f"Voter {v_id} registration status: {message}")
     
     print("\nDatabase seeding completed successfully!")
 
